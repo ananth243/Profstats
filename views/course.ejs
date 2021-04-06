@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profstats| <%= title %></title>
+    <link rel="icon" href="http://localhost:3000/logo.png" type="image/x-icon">
+    <style>
+        /* the same background */
+        html {
+            background: url("http://localhost:3000/cool-background.png") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    
+        body {
+            overflow-x: hidden;
+        }
+    
+        .navbar {
+            position: fixed;
+            width: 100%;
+            height: 50px;
+            left: 0px;
+            top: 0;
+    
+            background: #070707;
+            z-index: 1;
+        }
+    
+        .form_info {
+            top: 70px;
+            position: relative;
+            width: 35%;
+            left: 2%;
+            height: 650px;
+            display: inline-block;
+            background: #D5E8F3;
+            border-radius: 20px;
+            margin: 2%;
+            overflow: hidden;
+            text-align: center;
+        }
+    
+        .form_info1 {
+            top: 70px;
+            position: relative;
+            width: 55%;
+            left: 2%;
+            height: 650px;
+            display: inline-block;
+            background: #D5E8F3;
+            border-radius: 20px;
+            margin: 2%;
+            overflow: hidden;
+        }
+    
+        .container {
+            left: 10%;
+            width: 80%;
+            height: 10%;
+            text-align: left;
+            position: relative;
+        }
+    
+        .signout{
+            position: absolute;
+            padding-top: 5px;
+            color: #fff;
+            text-decoration: none;
+            width: 80px;
+            height: 26px;
+            right: 5%;
+            top: 8px;
+            overflow: hidden;
+            text-align: center;
+            background: linear-gradient(90deg, #0162c8, #55e7fc);
+            border-radius: 12px;
+        }
+    
+        .back {
+            position: absolute;
+            padding-top: 5px;
+            color: #fff;
+            text-decoration: none;
+            width: 80px;
+            height: 26px;
+            left: 5%;
+            top: 8px;
+            overflow: hidden;
+            text-align: center;
+            background: linear-gradient(90deg, #0162c8, #55e7fc);
+            border-radius: 12px;
+        }
+
+        .form{
+            position: absolute;
+            padding-top: 5px;
+            color: #fff;
+            text-decoration: none;
+            width: 80px;
+            bottom: 10px;
+            right: 5%;
+            overflow: hidden;
+            text-align: center;
+            background: linear-gradient(90deg, #0162c8, #55e7fc);
+            border-radius: 12px;
+            
+        }
+
+        span{
+            position: absolute;
+            background: #fff;
+            transform: translate(-50%,-50%);
+            pointer-events: none;
+            border-radius: 50%;
+            animation: animate 1s linear infinite;
+        }
+
+        @keyframes animate{
+            0%{
+                width: 0px;
+                height: 0px;
+            }
+            100% {
+                height: 500px;
+                width: 500px;
+                opacity: 0;
+            }
+        }
+    
+        .rev {
+            margin: 0;
+            padding: 0;
+            box-sizing: 0;
+            border-radius: 12px;
+            background: #2196f3;
+        
+        }
+    
+        section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+    
+        /* Everything under this controls the dynamic section */
+    
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+    
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 320px;
+            background: #fff;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            filter: blur(4px);
+            background: #d1ebff;
+            border-radius: 10px;
+        }
+    
+        .swiper-slide-active {
+            filter: blur(0px);
+            background: #fff;
+        }
+    
+        .testimonialBox {
+            position: relative;
+            width: 80%;
+            padding: 40px;
+            padding-top: 90px;
+            color: #999;
+    
+        }
+    
+        .testimonialBox .quote {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            opacity: 0.2;
+    
+        }
+    
+        .testimonialBox .details {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+    
+        .testimonialBox .details .imgBx {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+    
+    
+        }
+    
+        .testimonialBox .details .imgBx img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+    
+        }
+    
+        .testimonialBox .details h3 {
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #2196f3;
+            line-height: 1.1em;
+        }
+    
+        .testimonialBox .details h3 span {
+            font-size: 12px;
+            color: #666;
+    
+        }
+    
+        .swiper-container-3d .swiper-slide-shadow-left,
+        .swiper-container-3d .swiper-slide-shadow-rigth {
+            background-image: none;
+        }
+    
+        /* Handles the tip heading */
+        h1 {
+            text-align: center;
+        }
+        th, td {
+            padding: 5px 30px 5px 30px;
+        }
+        /* responsive */
+        @media screen and (max-width: 450px) {
+            .form_info {
+                overflow: auto;
+                width: 93%; 
+                height: auto;
+            }
+            .form_info1{
+                overflow: auto;
+                width: 93%; 
+                height: auto;
+            }
+            .swiper-slide{
+                width: 250px;
+                box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/> 
+</head>
+
+<body>
+    <% if(user) { %>
+        <!-- the same nav bar -->
+    <div class='navbar'>
+        <a href="/profile/" class="back">
+            Back
+        </a>
+        <a href="/auth/logout" class="signout">
+            Sign Out
+        </a>
+    </div>
+
+    <!-- making the two box -->
+    <% if(user.email.length==31){ %>
+        <% if(user.email[0]=='f'){ %>
+            <div class="form_info">
+                <div class="container">
+                    <h1>Description</h1>
+                    <br>
+                    <p><%=description%></p>
+                </div>
+            </div>
+            <div class="form_info1">
+                <div class="container">
+                    <h1>Preferences</h1>
+                    <br>
+                    <table>
+                        <tr>
+                            <th>Faculty</th>
+                            <th>Rating</th>
+                        </tr>
+                        <% faculty.forEach(faculty=>{ %>
+                            <tr>
+                                <td>
+                                    <h4 style="font-family: 'Times New Roman', Times, serif;">
+                        <%= faculty["name"] %>
+                                    </h4>
+                                </td>
+                                <td>
+                                    <h4 style="font-family: 'Times New Roman', Times, serif;">
+                        <%= faculty["id"] %>
+                                    </h4>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </table>
+                </div>
+            <% if(user.email[3]=='1' ){ %>
+                    <div>
+                        <button class="form"><a href="/profile/form/<%= url %>" style="text-decoration:none;">Form</a></button>
+                    </div>
+            <% } %>
+            
+            </div>
+        <br><br><br><br><br>
+            <!-- adds the dynmic feature at the bottom -->
+            <div class="rev">
+                <br><br>
+                <h1>Tips and Tricks</h1>
+                <section>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                        <% rank.forEach(rank=>{%>
+                            <% if(rank.comments!=""){ %>
+                                <div class="swiper-slide">
+                            <div class="testimonialBox">
+                                <img src="http://localhost:3000/quote.png" class="quote">
+                                <div class="content">
+                                    <p><%= rank.comments %></p>
+                                    </div>
+                                    <div class="details">
+                                        <div class="imgBx">
+                                            <img src="http://localhost:3000/logo.png" class="src">
+                                        </div>
+                                        <h3><%= rank.user %><br><span><%= rank.year %></span></span></h3>
+                                    </div>
+                                </div>
+                            </div>     
+                        </div>
+                        <% }}) %>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                      </div>
+                </section>
+                
+            </div>
+            <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+            <script>
+                var swiper = new Swiper('.swiper-container', {
+                    effect: 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    coverflowEffect: {
+                        rotate: 0,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 2,
+                        slideShadows: true,
+                    },
+                    loop: true
+                });
+            </script>
+            <script type="text/javascript">
+                const buttons = document.querySelectorAll('a');
+                buttons.forEach(btn=>{
+                    btn.addEventListener('click',function(e){
+                        let x = e.clientX - e.target.offsetLeft;
+                        let y = e.clientY - e.target.offsetTop;
+        
+                        let ripples = document.createElement('span');
+                        ripples.style.left = x + 'px';
+                        ripples.style.top = y + 'px';
+                        this.appendChild(ripples);
+        
+                        setTimeout(()=>{
+                            ripples.remove()
+                        },1000);
+                    })
+                })
+            </script>
+        <% } %>
+    <% } else {%>
+        <h1 style="margin: 10%;">Sorry you do not have access to this</h1>
+    <% } %>
+    <% } else{ %>
+        <h1>Sorry you have to login</h1>
+        <nav>
+            <ul>
+                <li><a href="/auth/google">Login</a></li>
+                <li><a href="/">Homepage</a></li>
+            </ul>
+        </nav>
+    <% } %>
+</body>
+</html>

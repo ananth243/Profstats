@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+        <title>Profstats| <%= title %></title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+        <link rel="icon" href="http://localhost:3000/logo.png" type="image/x-icon">
+        <style>
+            body {
+  overflow-x: hidden;
+}
+
+html {
+  background: url("http://localhost:3000/cool-background.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/* black header on the top */
+.nav {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  left: 0px;
+  top: 0;
+
+  background: #070707;
+  z-index: 1;
+}
+
+/* Form -meaning blue box on the right*/
+
+.form_info{
+  top: 70px;
+  position: relative;
+  width: 35%;
+  left: 2%;
+  height: 650px;
+  display: inline-block;
+  background: #D5E8F3;
+  border-radius: 20px;
+  margin: 2%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.form_info1{
+  top: 70px;
+  position: relative;
+  width: 55%;
+  left: 2%;
+  height: 650px;
+  display: inline-block;
+  background: #D5E8F3;
+  border-radius: 20px;
+  margin: 2%;
+overflow-y: auto;
+  text-align: center;
+}
+
+.signout{
+  position: absolute;
+  padding-top: 5px;
+  color: #fff;
+  text-decoration: none;
+  width: 80px;
+  height: 26px;
+  right: 5%;
+  top: 8px;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(90deg, #0162c8, #55e7fc);
+  border-radius: 12px;
+}
+
+.back {
+  position: absolute;
+  padding-top: 5px;
+  color: #fff;
+  text-decoration: none;
+  width: 80px;
+  height: 26px;
+  left: 5%;
+  top: 8px;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(90deg, #0162c8, #55e7fc);
+  border-radius: 12px;
+}
+
+.form{
+  position: absolute;
+  padding-top: 5px;
+  color: #fff;
+  text-decoration: none;
+  width: 80px;
+  bottom: 10px;
+  right: 5%;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(90deg, #0162c8, #55e7fc);
+  border-radius: 12px;
+  
+}
+
+a span{
+  position: absolute;
+  background: #fff;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: animate 1s linear infinite;
+}
+
+@keyframes animate{
+  0%{
+      width: 0px;
+      height: 0px;
+  }
+  100% {
+      height: 500px;
+      width: 500px;
+      opacity: 0;
+  }
+}
+
+
+/*whenever text is enclosed within any blue box use this class with a div,text looks cleaner*/
+.container{
+    top: 5%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    text-align: left;
+    position: relative;
+}
+.yellow{
+    color:rgb(230, 230, 19);
+  }
+.comment{
+    width: 90%;
+    height: 60px;
+    left:45%;
+    top:85%;
+  }
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: rgb(9, 140, 201);
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  right: 30%;
+  position: absolute;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #cfdee2;
+  min-width: 100px;
+  box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content i {
+  color: rgb(3, 3, 3);
+  padding: 8px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content i:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #72ecf5;} 
+
+@media screen and (max-width: 450px) {
+  .form_info {
+        overflow: auto;
+        width: 93%; 
+        height: auto;
+    }
+  .form_info1{
+        overflow: auto;
+        width: 93%; 
+        height: auto;
+    }
+    
+}
+
+        </style>
+    </head>
+    <body>
+        <div class="nav">
+            <a href='/auth/logout' class="signout">Sign Out</a>
+            <a href="/profile" class="back">Back</a>
+        </div>
+
+        <% if(user.email[3]=='1'){ %>
+            <div class="form_info">
+            <div class="container">
+                <h1>Guidelines</h1>
+                <p>In the form, fill out the ratings, 1 being the highest amd 5 being the lowest, for the profs you have been taught by in lecture, tutorials or lab sections. </p>
+                <p>A text box has been to put up to enter any advice you might have for the course.</p>
+                <p>Your name and year will be displayed upon submission for the juniors</p>
+                <p>Don't worry we have taken steps to ensure that teachers and higher degree students cannot see the review</p>
+                <p>But please be respectful and also do not use profanity</p>
+            <br><br>
+            </div>
+        </div>
+            <div class="form_info1">
+                <br><br>
+                <div class="container">
+                        
+                    <form form action="/profile/form/<%=route%>" method="POST">
+                        <% faculty.forEach(faculty=>{ %>
+                    
+                            <div>
+    
+                                <span><%= faculty.name %> </span>
+                                <span class="dropdown">
+                                    <input type="number" min="0" max="5" name="<%= faculty.facid %>" required >
+                                </span>
+                            </div>
+                            
+                         
+                            <br>
+                            <hr>
+                            <% }) %>
+                            <label for="comments">Suggestions or Tips for the students</label>
+                                <textarea name="comments" class="comment"></textarea>
+                                <br>
+                        <br>
+                        <input type="text" value="<%= user.username %>" name="user" readonly>
+                        <input type="text" value="<%= year %>" name="year" readonly>
+                        <input type="text" value="<%= courseId %>" name="courseId" readonly>
+                    </div>
+                    <br><br><br>
+                    <button class="form">
+                        Submit
+                    </button>
+                    
+                </div>
+            </form>
+            <script type="text/javascript">
+              // ripple effect for buttons
+              const buttons = document.querySelectorAll('a');
+              buttons.forEach(btn=>{
+                  btn.addEventListener('click',function(e){
+                      let x = e.clientX - e.target.offsetLeft;
+                      let y = e.clientY - e.target.offsetTop;
+      
+                      let ripples = document.createElement('span');
+                      ripples.style.left = x + 'px';
+                      ripples.style.top = y + 'px';
+                      this.appendChild(ripples);
+      
+                      setTimeout(()=>{
+                          ripples.remove()
+                      },1000);
+                  })
+              })
+          </script>
+        <% } else{ %>
+            <h1 style="margin: 10%;">You are not authorized to access this form</h1>
+        <% } %>
+      
+    </body>
+</html>

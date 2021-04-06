@@ -1,0 +1,12 @@
+<%- include("./partials/head.ejs") %>
+<body>
+    <%- include("./partials/navbar.ejs") %>
+    <form action="/add/course" method="POST">
+        <label for="courseId">Course ID</label>
+        <input id="courseId" name="courseId" type="text" placeholder="Enter course ID" required>
+        <label for="course">Course</label>
+        <input id="course" name="course" type="text" placeholder="Enter course" required>
+        <button>Submit</button>
+    </form>
+</body>
+</html>

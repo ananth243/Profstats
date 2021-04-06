@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profstats| <%= title %>
+    </title>
+    <link rel="icon" href="http://localhost:3000/logo.png" type="image/x-icon">
+    <style>
+        /* Adds the background */
+html {
+    background: url("http://localhost:3000/cool-background.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+body {
+    overflow-x: hidden;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    left: 0px;
+    top: 0;
+
+    background:  #070707;
+    z-index: 1;
+}
+/* 24-70- evething related to search bar */
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+  
+.searchTerm {
+    width: 100%;
+    border: 3px solid #0398d3;
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+    border-radius: 12px left;
+  }
+  
+.searchTerm:focus{
+    color: #0398d3;
+  }
+  
+.searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #0398d3;
+    background: #0398d3;
+    text-align: center;
+    color: #DCDCDC;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+    background-image: url("http://localhost:3000/icons8-search.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px right;
+   
+  }
+
+.wrap{
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.signout{
+    position: absolute;
+    padding-top: 5px;
+    color: #fff;
+    text-decoration: none;
+    width: 80px;
+    height: 26px;
+    right: 5%;
+    top: 8px;
+    overflow: hidden;
+    text-align: center;
+    background: linear-gradient(90deg, #0162c8, #55e7fc);
+    border-radius: 12px;
+}
+
+span{
+    position: absolute;
+    background: #fff;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    border-radius: 50%;
+    animation: animate 1s linear infinite;
+}
+
+@keyframes animate{
+    0%{
+        width: 0px;
+        height: 0px;
+    }
+    100% {
+        height: 500px;
+        width: 500px;
+        opacity: 0;
+    }
+}
+
+li{
+    display:inline;
+}
+
+#card {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.subjectCard{
+    top: 70px;
+    position: relative;
+    width: 20%;
+    left: 1%;
+    height: 250px;
+    display: inline-block;
+    background: linear-gradient(
+        #D5E8F3,#D5E8F3 50%, #494949 50%, #494949
+    ) ;
+    background-size: 100% 200%;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    margin: 2%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.subjectCard:hover {
+    background-position: 100% 100%;
+  }
+
+    
+.subjectCard:hover h2 {
+    color: white;
+  }
+
+.subjectCard:hover h4 {
+    color: white;
+  }
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+
+/* The link to other page. Work need to be done to make all of this more dynamic */
+
+.subjectCard .ranklist{
+    display: none;
+    
+}
+
+.subjectCard:hover .ranklist{
+    display: block;
+    margin-left: 27%;
+    padding: 5px;
+    background: #0398d3;
+    border-radius: 5px;
+    position: relative;
+    bottom: -10%;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 50%;
+
+}
+
+/* responsive */
+@media screen and (max-width: 450px) {
+  .subjectCard{
+    width: 93%;
+    height: 345px;
+  }
+  .wrap{
+    left: 35%;
+    width: 60%;
+  }
+  .subjectCard:hover .ranklist{
+      bottom: -30%;
+  }
+}
+
+
+    </style>
+</head>
+
+<body>
+    <% if(user) { %>
+        <div class='navbar'>
+            <div class="wrap">
+                <div class="search">
+                   <input type="text" id="myInput" onkeyup="myFunction()" class="searchTerm" placeholder="Enter your subject code">
+                   <button type="submit" class="searchButton">
+                     
+                  </button>
+                </div>
+             </div>
+             <a href="/auth/logout" class="signout">
+                Sign out
+            </a>
+        </div>
+        <ul id="card">
+            <% course.forEach(course =>{ %>
+                <li>
+                    <div class="subjectCard">
+                        <h2><%= course.courseId %></h2>
+                        <h4><%= course.course %></h4>
+                        <br><br>
+                        <botton class="ranklist">
+                            <a href="/profile/<%= course.courseId %>" class="ranklist">
+                                Preferences
+                            </a>
+                        </botton>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else{ %>
+        <h1>Sorry you have to login</h1>
+    <% } %>
+    <% if(!user) { %>
+        <nav>
+            <ul>
+                    <li><a href="/auth/login">Login</a></li>
+                    <li><a href="/">Homepage</a></li>
+            </ul>
+        </nav>
+    <% } %>
+    <script>
+        // search bar working
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("card");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("h2")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+    </script>
+    <script type="text/javascript">
+        // ripple effect for buttons
+        const buttons = document.querySelectorAll('a');
+        buttons.forEach(btn=>{
+            btn.addEventListener('click',function(e){
+                let x = e.clientX - e.target.offsetLeft;
+                let y = e.clientY - e.target.offsetTop;
+
+                let ripples = document.createElement('span');
+                ripples.style.left = x + 'px';
+                ripples.style.top = y + 'px';
+                this.appendChild(ripples);
+
+                setTimeout(()=>{
+                    ripples.remove()
+                },1000);
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,313 @@
+<head>
+    <!-- taken from the google website -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profstats| <%= title %></title>
+    <link rel="icon" href="http://localhost:3000/logo.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style> 
+        #front {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+    
+        /* set the moving gradient colour */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+    
+            50% {
+                background-position: 100% 50%;
+            }
+    
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    
+        .heading {
+            line-height: 400px;
+            text-align: center;
+            height: 100vh;
+            width: 100%;
+            color: white;
+            font-family: "Courier New";
+            font-size: 150%;
+    
+        }
+    
+        body {
+            margin: 0px;
+            overflow: hidden;
+        }
+    
+        h1 {
+            margin: 0px;
+        }
+    
+        div {
+            margin: 0px;
+        }
+    
+        .wrapper {
+            display: grid;
+            grid-template-columns:
+                1fr min(65ch, 100%) 1fr;
+        }
+    
+        /* line 54-68 set the spacing seen at the bottom of the page, puts the content right at the center */
+        .wrapper>* {
+            grid-column: 2;
+        }
+    
+        .full-bleed {
+            width: 100%;
+            grid-column: 1 / 4;
+        }
+    
+        .center-con {
+            display: flex;
+            height: 30vh;
+            align-items: center;
+            justify-content: center;
+        }
+    
+    
+        /* line 72-126 makes the dynamic button on the main page. I still need to fix the direction of arrow from right to downwards */
+        .round {
+            position: absolute;
+            border: 2px solid #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+    
+        }
+    
+        #cta {
+            width: 100%;
+            cursor: pointer;
+            position: absolute;
+        }
+    
+        #cta .arrow {
+            left: 30%;
+        }
+    
+        .arrow {
+            position: absolute;
+            bottom: 0;
+            margin-left: 0px;
+            width: 12px;
+            height: 12px;
+            background-size: contain;
+            top: 15px;
+        }
+    
+        .segunda {
+            margin-left: 8px;
+        }
+    
+        .next {
+            background-image: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHN0eWxlPi5zdDB7ZmlsbDojZmZmfTwvc3R5bGU+PHBhdGggY2xhc3M9InN0MCIgZD0iTTMxOS4xIDIxN2MyMC4yIDIwLjIgMTkuOSA1My4yLS42IDczLjdzLTUzLjUgMjAuOC03My43LjZsLTE5MC0xOTBjLTIwLjEtMjAuMi0xOS44LTUzLjIuNy03My43UzEwOSA2LjggMTI5LjEgMjdsMTkwIDE5MHoiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzE5LjEgMjkwLjVjMjAuMi0yMC4yIDE5LjktNTMuMi0uNi03My43cy01My41LTIwLjgtNzMuNy0uNmwtMTkwIDE5MGMtMjAuMiAyMC4yLTE5LjkgNTMuMi42IDczLjdzNTMuNSAyMC44IDczLjcuNmwxOTAtMTkweiIvPjwvc3ZnPg==);
+        }
+    
+        @keyframes bounceAlpha {
+            0% {
+                opacity: 1;
+                transform: translateX(0px) scale(1);
+            }
+    
+            25% {
+                opacity: 0;
+                transform: translateX(10px) scale(0.9);
+            }
+    
+            26% {
+                opacity: 0;
+                transform: translateX(-10px) scale(0.9);
+            }
+    
+            55% {
+                opacity: 1;
+                transform: translateX(0px) scale(1);
+            }
+        }
+    
+        .bounceAlpha {
+            animation-name: bounceAlpha;
+            animation-duration: 1.4s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+    
+        .arrow.primera.bounceAlpha {
+            animation-name: bounceAlpha;
+            animation-duration: 1.4s;
+            animation-delay: 0.2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+    
+        .round:hover .arrow {
+            animation-name: bounceAlpha;
+            animation-duration: 1.4s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+    
+        .round:hover .arrow.primera {
+            animation-name: bounceAlpha;
+            animation-duration: 1.4s;
+            animation-delay: 0.2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+    
+        p {
+            padding-top: 50px;
+            text-align: center;
+        }
+    
+        /* This is taken for the google login button */
+        #my-signin2 {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        html {
+            scroll-behavior: smooth;
+        }
+        .google-btn {
+            width: 184px;
+            height: 42px;
+            background-color:#4285f4;
+            border-radius: 2px;
+            box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+            margin-bottom: 50px;
+      
+      }
+      .google-btn>.google-icon-wrapper {
+        position: absolute;
+        margin-top: 1px;
+        margin-left: 1px;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background-color: white;
+      }
+      .google-btn>.google-icon {
+        position: absolute;
+      }
+
+    a {
+        text-decoration: none;
+    }
+      .btn-text {
+        position: relative;
+        top: 20%;
+        left: 42%;
+        margin: 0 auto;
+        color: #fff;
+        font-size: larger;
+      }
+      .google-btn:hover {
+        box-shadow: 0 0 6px google-blue;
+      }
+      .google-btn:active {
+        background: #1669F2;
+      }
+    </style>
+</head>
+
+<body>
+    <div class="heading" id="front">
+        <h1>
+            ProfStats
+        </h1>
+        <div>
+            <!-- This is for the arrow  -->
+            <botton>
+                <a href="#text">
+                    <div class="center-con">
+                        <div class="round">
+                            <div id="cta">
+                                <span class="arrow primera next "></span>
+                                <span class="arrow segunda next "></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </botton>
+        </div>
+    </div>
+
+    <!-- This would contain a breif desciption -->
+    <main class="wrapper" id="textStart">
+        <section id="text">
+            <p>
+                ProfStats is a tool we to get a general opinion of the seniors for their preference of professors and tips for a particular course.
+                Created as a part of hackathon organised by DevSoc of BITS Pilani, Goa Campus.
+            </p>
+            <p><b>Please use BITS email ID to login</b></p>
+        </section>
+    </main>
+        <!-- for google button -->
+        <br>
+        <div id="my-signin2">
+        <a href="/auth/google">
+            <div class="google-btn">
+                <div class="google-icon-wrapper">
+                <img
+                    class="google-icon"
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                />
+                </div>
+                <span class="btn-text"><b>Sign in</b></span>
+            </div>
+            </a>
+    </div>
+
+    <!-- Code injected by live-server -->
+    <script type="text/javascript">
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        
+	// ]]>
+    </script>
+</body>

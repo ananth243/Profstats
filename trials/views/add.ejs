@@ -1,0 +1,14 @@
+<%- include("./partials/head.ejs") %>
+<body>
+    <%- include("./partials/navbar.ejs") %>
+    <form action="/add" method="POST">
+        <label for="name">Prof</label>
+        <input id="name" name="name" type="text" placeholder="Enter professor name" required>
+        <label for="courseId">CourseId</label>
+        <input id="course" name="courseId" type="text" placeholder="Enter courseId" required>
+        <label for="facid">Facid</label>
+        <input id="facid" name="facid" type="text" placeholder="Enter facid" required>
+        <button>Submit</button>
+    </form>
+</body>
+</html>
