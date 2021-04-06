@@ -30,12 +30,12 @@ In the future we plan to:
 
 ## Team members
 ### Frontend team
-* [Anirudh Pupneja](-github.com/apupneja/)
+* [Anirudh Pupneja](https://github.com/apupneja/)
    
-* [Omkar Kulkarni](-github.com/oak2905/)
+* [Omkar Kulkarni](https://github.com/oak2905/)
 ### Backend team
-* [Ananth Raghav](-github.com/ananth243/)
+* [Ananth Raghav](https://github.com/ananth243/)
 
-* [Mohit Sharma](-github.com/Mohit-6515/)
+* [Mohit Sharma](https://github.com/Mohit-6515/)
 
 
