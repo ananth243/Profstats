@@ -7,15 +7,16 @@
     "mongoose": "^5.12.0",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "validator": "^13.7.0"
   },
   "name": "devsoc",
   "description": "First off you should create the keys file in the config folder. It should be in this format:\r ```\r module.exports = {\r         google: {\r             clientID: 'YOUR_GOOGLE_CLIENTID.apps.googleusercontenTcom',\r             clientSecret: 'Jku7vCb4m0sliI_ZZNEqWX7N'\r         },\r         mongodb: {\r             dbURI: 'Your mongodb cloud application link'\r         },\r         session:{\r             cookieKey: \"Any random cookie key you want like hbwdjkbvsjfbsk\"\r         }\r };\r ```",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start":"node app",
-    "dev":"nodemon app",
+    "start": "node app",
+    "dev": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

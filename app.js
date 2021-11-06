@@ -9,9 +9,6 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 const morgan = require("morgan");
 const app = express();
-const Course = require("./models/course");
-const Rank = require("./models/rank");
-const Faculty = require("./models/faculty");
 app.set("view engine", "ejs");
 
 let port = process.env.PORT;
@@ -50,16 +47,10 @@ app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
 app.use("/profile/form", formRoutes);
 
-// app.get("/test-pipeline/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const courseId = id.slice(0, 4) + " " + id.slice(5, 9);
-//   res.json(aggregation);
-// });
-
 app.get("/", (req, res) => {
   res.render("homepage", { title: "Homepage" });
 });
 
 app.use((req, res) => {
-  res.status("404").render("404", { title: "Error" });
+  res.status(404).render("404", { title: "Error" });
 });
