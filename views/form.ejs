@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-        <title>Profstats| <%= title %></title>
+        <title>Profstats| <%= courseId %> | FORM</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
         <link rel="icon" href="http://localhost:3000/logo.png" type="image/x-icon">
         <style>
@@ -209,11 +209,11 @@ a span{
             <a href="/profile" class="back">Back</a>
         </div>
 
-        <% if(user.email[3]=='1'){ %>
+        <% if(user.email[3]!='2'){ %>
             <div class="form_info">
             <div class="container">
                 <h1>Guidelines</h1>
-                <p>In the form, fill out the ratings, 1 being the highest amd 5 being the lowest, for the profs you have been taught by in lecture, tutorials or lab sections. </p>
+                <p>In the form, fill out the ratings, 1 being the highest amd 10 being the lowest, for the profs you have been taught by in lecture, tutorials or lab sections. </p>
                 <p>A text box has been to put up to enter any advice you might have for the course.</p>
                 <p>Your name and year will be displayed upon submission for the juniors</p>
                 <p>Don't worry we have taken steps to ensure that teachers and higher degree students cannot see the review</p>
@@ -225,14 +225,14 @@ a span{
                 <br><br>
                 <div class="container">
                         
-                    <form form action="/profile/form/<%=route%>" method="POST">
+                    <form form action="/profile/form/<%=courseId%>" method="POST">
                         <% faculty.forEach(faculty=>{ %>
                     
-                            <div>
+                            <div class="wow">
     
                                 <span><%= faculty.name %> </span>
                                 <span class="dropdown">
-                                    <input type="number" min="0" max="5" name="<%= faculty.facid %>" required >
+                                    <input type="number" min="0" max="10" name="<%= faculty._id %>" required >
                                 </span>
                             </div>
                             
@@ -240,8 +240,6 @@ a span{
                             <br>
                             <hr>
                             <% }) %>
-                            <label for="comments">Suggestions or Tips for the students</label>
-                                <textarea name="comments" class="comment"></textarea>
                                 <br>
                         <br>
                         <input type="text" value="<%= user.username %>" name="user" readonly>
@@ -252,11 +250,9 @@ a span{
                     <button class="form">
                         Submit
                     </button>
-                    
                 </div>
             </form>
             <script type="text/javascript">
-              // ripple effect for buttons
               const buttons = document.querySelectorAll('a');
               buttons.forEach(btn=>{
                   btn.addEventListener('click',function(e){

@@ -9,6 +9,10 @@ const courseSchema= new Schema({
     courseId:{
         type: String,
         required: true,
+    },
+    description:{
+        type: String,
+        required: true,
     }
 }, {timestamps:true});
 

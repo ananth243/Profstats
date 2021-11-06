@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profstats| <%= title %></title>
+    <title>Profstats| <%= doc.courseId %></title>
     <link rel="icon" href="http://localhost:3000/logo.png" type="image/x-icon">
     <style>
         /* the same background */
@@ -286,7 +286,7 @@
                 <div class="container">
                     <h1>Description</h1>
                     <br>
-                    <p><%=description%></p>
+                    <p><%=doc.description%></p>
                 </div>
             </div>
             <div class="form_info1">
@@ -298,56 +298,30 @@
                             <th>Faculty</th>
                             <th>Rating</th>
                         </tr>
-                        <% faculty.forEach(faculty=>{ %>
+                        <% aggregation.forEach(faculty=>{ %>
                             <tr>
                                 <td>
                                     <h4 style="font-family: 'Times New Roman', Times, serif;">
-                        <%= faculty["name"] %>
+                        <%= faculty.name %>
                                     </h4>
                                 </td>
                                 <td>
                                     <h4 style="font-family: 'Times New Roman', Times, serif;">
-                        <%= faculty["id"] %>
+                        <%= faculty.rating %>
                                     </h4>
                                 </td>
                             </tr>
                             <% }) %>
                     </table>
                 </div>
-            <% if(user.email[3]=='1' ){ %>
+            <% if(user.email[3]=='2' ){ %>
                     <div>
-                        <button class="form"><a href="/profile/form/<%= url %>" style="text-decoration:none;">Form</a></button>
+                        <button class="form"><a href="/profile/form/<%=courseId%>" style="text-decoration:none;">Form</a></button>
                     </div>
             <% } %>
             
             </div>
         <br><br><br><br><br>
-            <!-- adds the dynmic feature at the bottom -->
-            <div class="rev">
-                <br><br>
-                <h1>Tips and Tricks</h1>
-                <section>
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                        <% rank.forEach(rank=>{%>
-                            <% if(rank.comments!=""){ %>
-                                <div class="swiper-slide">
-                            <div class="testimonialBox">
-                                <img src="http://localhost:3000/quote.png" class="quote">
-                                <div class="content">
-                                    <p><%= rank.comments %></p>
-                                    </div>
-                                    <div class="details">
-                                        <div class="imgBx">
-                                            <img src="http://localhost:3000/logo.png" class="src">
-                                        </div>
-                                        <h3><%= rank.user %><br><span><%= rank.year %></span></span></h3>
-                                    </div>
-                                </div>
-                            </div>     
-                        </div>
-                        <% }}) %>
-                        <!-- Add Pagination -->
                         <div class="swiper-pagination"></div>
                     </div>
                       </div>

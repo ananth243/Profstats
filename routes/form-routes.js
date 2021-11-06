@@ -1,79 +1,48 @@
-const router= require('express').Router();
-const Rank = require('../models/rank');
-const Faculty= require('../models/faculty');
+const router = require("express").Router();
+const Rank = require("../models/rank");
+const Faculty = require("../models/faculty");
+const { Faculties } = require("../pipelines/Aggregate");
 
-router.get('/BITS%20F110', (req, res)=>{
-    Faculty.find({courseId: "BITS F110"}).sort()
-    .then((result)=>{
-        res.render('form', {
-            title: "BITS F110| Form",
-            courseId:"BITS F110",
-            route:"BITS%20F110", 
-            user: req.user, 
-            faculty: result, 
-            year: req.user.email.slice(1,5)
-        });
-    })
-    .catch((err)=>console.log(err));
-})
-
-router.get('/BITS%20F111', (req, res)=>{
-    Faculty.find({courseId: "BITS F111"}).sort()
-    .then((result)=>{
-        res.render('form', {
-            title: "BITS F111| Form",
-            courseId:"BITS F111",
-            route:"BITS%20F111", 
-            user: req.user, 
-            faculty: result, 
-            year: req.user.email.slice(1,5)
-        });
-    })
-    .catch((err)=>console.log(err));
-})
-
-router.get('/BITS%20F112', (req, res)=>{
-    Faculty.find({courseId: "BITS F112"}).sort()
-    .then((result)=>{
-        res.render('form', {
-            title: "BITS F112| Form",
-            courseId:"BITS F112",
-            route:"BITS%20F112", 
-            user: req.user, 
-            faculty: result, 
-            year: req.user.email.slice(1,5)
-        });
-    })
-    .catch((err)=>console.log(err));
-})
-
-
-//POST Routes
-router.post('/BITS%20F110',(req, res)=>{
-    const rank = new Rank(req.body);
-    rank.save()
-    .then((result)=>{
-        res.redirect('/profile/BITS%20F110');
-    })
-    .catch((err)=>console.log(err));
+router.use((req, res, next) => {
+  if (parseInt(req.user.email.slice(1, 5)) === 2020) {
+    res.redirect("/profile");
+  } else {
+    next();
+  }
 });
 
-router.post('/BITS%20F111',(req, res)=>{
-    const rank = new Rank(req.body);
-    rank.save()
-    .then((result)=>{
-        res.redirect('/profile/BITS%20F111');
-    })
-    .catch((err)=>console.log(err));
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const courseId = id.slice(0, 4) + " " + id.slice(5, 9);
+  const faculty = await Faculties(courseId);
+  res.render("form", {
+    user: req.user,
+    courseId,
+    year: req.user.email.slice(1, 5),
+    faculty: faculty.faculties,
+  });
 });
 
-router.post('/BITS%20F112',(req, res)=>{
-    const rank = new Rank(req.body);
-    rank.save()
-    .then((result)=>{
-        res.redirect('/profile/BITS%20F112');
-    })
-    .catch((err)=>console.log(err));
-})
+router.post("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const courseId = id.slice(0, 4) + " " + id.slice(5, 9);
+    if (courseId === req.body.courseId) {
+      for (const property in req.body) {
+        if (property.length === 24) {
+          const rank = new Rank({
+            rank: parseInt(req.body[property]),
+            facid: property,
+          });
+          await rank.save();
+        }
+      }
+      res.redirect(`/profile/${courseId}`);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-module.exports= router;
+
+module.exports = router;

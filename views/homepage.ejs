@@ -248,11 +248,11 @@
     <!-- This would contain a breif desciption -->
     <main class="wrapper" id="textStart">
         <section id="text">
-            <p>
+            <p style="font-size: large; font-family: 'Courier New', Courier, monospace; font-weight: 100; font-style: italic;">
                 ProfStats is a tool we to get a general opinion of the seniors for their preference of professors and tips for a particular course.
                 Created as a part of hackathon organised by DevSoc of BITS Pilani, Goa Campus.
             </p>
-            <p><b>Please use BITS email ID to login</b></p>
+            <p style="color: red;"><b>Please use BITS email ID to login</b></p>
         </section>
     </main>
         <!-- for google button -->
@@ -299,7 +299,6 @@
                     else if (msg.data == 'refreshcss') refreshCSS();
                 };
                 if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-                    console.log('Live reload enabled.');
                     sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
                 }
             })();

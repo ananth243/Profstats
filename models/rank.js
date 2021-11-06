@@ -2,64 +2,15 @@ const mongoose= require('mongoose');
 const Schema= mongoose.Schema;
 
 const rankSchema= new Schema({
-    /*I have created an id for each induvidual professor 
-    which will take only numbers as inputs
-    id1:Ravindra Singh Saluja
-    id2:Iniyan Thiruselvam N
-     id3:Vaibhav Joshi
-     id4:Biswajit Das
-     id5:Manoj Kumar Hilalpure 
-     id6:Gavade Atul Arjun
-     Only for BITS F110
-     We can make another db storing all the fac ids,course id */
-    id1:{
-        type:Number,
-        required:false,
+    rank: {
+        type: [0,1,2,3,4,5,6,7,8,9,10],
+        required: true
     },
-    id2:{
-        type:Number,
-        required:false,
-    },
-    id3:{
-        type:Number,
-        required:false,
-    },
-    id4:{
-        type:Number,
-        required:false,
-    },
-    id5:{
-        type:Number,
-        required:false,
-    },
-    id6:{
-        type:Number,
-        required:false,
-    },
-    courseId:{
-        type: String,
-        required: false,
-    },
-    comments:{
-        type:String,
-        required: false,
-    },
-    user:{
-        type:String,
-        required: false,
-    },
-    year:{
-        type:String,
-        required: false,
-    },
-    /*name:{
-        type:String,
-        required:true,
-    },
-    average:{
-        type: Number,
+    facid:{
+        type: Schema.Types.ObjectId,
         required: true,
-    }*/
+        ref:"faculties"
+    }
 }, {timestamps: true});
 
 const Rank= mongoose.model('rank', rankSchema);

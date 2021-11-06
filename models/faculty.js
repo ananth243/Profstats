@@ -7,12 +7,9 @@ const facSchema = new Schema({
         required: true
     },
     courseId:{
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true,
-    },
-    facid:{
-        type: String,
-        required: true,
+        ref:"courses"
     }
 }, {timestamps: true});
 
